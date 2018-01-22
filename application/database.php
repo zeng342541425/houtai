@@ -13,13 +13,13 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => 'xxxxxxxx',
+    'hostname'        => '11111111111',
     // 数据库名
     'database'        => 'weixin',
     // 用户名
     'username'        => 'root',
     // 密码
-    'password'        => 'xxxxxxxxxx',
+    'password'        => '1111111111111111',
     // 端口
     'hostport'        => '3306',
     // 连接dsn
