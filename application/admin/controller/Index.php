@@ -88,13 +88,11 @@ class Index extends Allow{
 	public function add(){
 		return view('add');
 	}
+
 	//按钮
 	public function buttons(){
 		return view('buttons');
 	}
-
-	public function test(){
-		return view('test');
-	}
+	
 }
 ?>
