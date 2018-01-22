@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 300px;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=knIYTGVVbPk7GEPBgmA2MKUzoAhtBxde"></script>
+	<title>地址解析</title>
+</head>
+<body>
+	<div id="allmap"></div>
+	<p><h1>---------------------------------</h1></p>
+	<form action="__URL__/baidu" method="post">
+		<p>
+			<input type="text" name="address" id="">
+			<input type="submit" value="搜索">
+		</p>
+	</form>
+	<div id="results"></div>
+
+</body>
+</html>
+<script type="text/javascript">
+		var map = new BMap.Map("allmap");
+
+		// map.centerAndZoom(new BMap.Point(latitude, longitude), 17);
+		map.centerAndZoom(new BMap.Point(116.510826, 40.040726), 17);
+
+		//添加自己的地图标记
+		var icon = new BMap.Icon('__STATIC__/pin.png', new BMap.Size(20, 32), {
+    		anchor: new BMap.Size(10, 30)
+		});
+		// var mkr =new BMap.Marker(new BMap.Point(latitude,longitude), {
+		var mkr =new BMap.Marker(new BMap.Point(116.510826,40.040726), {
+    		icon: icon
+		});
+		map.addOverlay(mkr);
+
+		//搜索关键字
+		var local = new BMap.LocalSearch(map, {
+		  renderOptions:{map: map,panel:"results"}
+		});
+
+		local.searchInBounds("<?php echo $data['address']; ?>", map.getBounds());
+
+		map.addEventListener("dragend",function(){
+		    map.clearOverlays();
+		    local.searchInBounds("<?php echo $data['address']; ?>", map.getBounds());
+		});
+</script>

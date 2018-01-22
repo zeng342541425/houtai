@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H+ 后台主题UI框架 - Bootstrap Table</title>
+    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
+    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__STATIC__/admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__STATIC__/admin/css/font-awesome.min.css" rel="stylesheet">
+    <link href="__STATIC__/admin/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="__STATIC__/admin/css/animate.min.css" rel="stylesheet">
+    <link href="__STATIC__/admin/css/style.min.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    
+                    <div class="col-sm-12">
+                        <a href="__URL__/add_article"><button class="btn btn-primary btn-outline" type="button">添加</button></a>
+                        <hr>
+                        <h4 class="example-title">数据列表</h4>
+                        <div class="example">
+					<table class="table table-bordered">
+						<thead>
+                            <tr>
+                                <th>推荐</th>
+                                <th>ID</th>
+                                <th>分类名</th>
+                                <th>标题</th>
+                                <th class="col-sm-1">操作</th>
+                            </tr>
+                        </thead>
+						<tbody>
+							{volist name="data" id="row"}
+								<tr>
+									<td>
+										{if condition="$row['recommend'] eq 1"}
+											是
+										{else /}
+											否
+										{/if}
+									</td>
+									<td>{$row['id']}</td>
+									<td><?php echo getcategory($row['parent_id']) ?></td>
+									<td>{$row['title']}</td>
+									<td>
+										<a href="__URL__/edit_article?id={$row['id']}" class="layui-btn layui-btn-mini">编辑</a>
+										<a href="javascript:;" data-id="1" data-opt="del" class="layui-btn layui-btn-danger layui-btn-mini deldata" idx="{$row['id']}">删除</a>
+									</td>
+								</tr>
+							{/volist}
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<div id="page" class="page">
+				</div>
+			</div>
+		</div>
+	<script src="__STATIC__/admin/js/jquery.min.js"></script>
+    <script src="__STATIC__/admin/js/bootstrap.min.js"></script>
+    <script src="__STATIC__/admin/js/content.min.js"></script>
+    <script src="__STATIC__/admin/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="__STATIC__/admin/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+    <script src="__STATIC__/admin/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script src="__STATIC__/admin/js/demo/bootstrap-table-demo.min.js"></script>
+	</body>
+	<script>
+		/*资讯-删除*/
+		$(".deldata").click( function() {
+			if (confirm("你确定删除吗?")) {  
+            	id=$(this).attr('idx');
+            	obj=$(this);
+				$.post("__URL__/ajax_del_article",{"id":id},function(data){
+					if(data==1){
+						$(obj).parent().parent().remove();
+					}else{
+						alert(data);
+					}
+				});
+        	}
+		});
+	</script>
+</html>
