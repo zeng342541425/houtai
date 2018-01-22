@@ -92,9 +92,5 @@ class Index extends Allow{
 	public function buttons(){
 		return view('buttons');
 	}
-
-	public function test(){
-		return view('test');
-	}
 }
 ?>
