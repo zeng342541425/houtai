@@ -40,7 +40,7 @@
                                         <td>{:date('Y-m-d H:i:s',$row['time'])}</td>
                                         <td>
                                             <a href="__URL__/user_edit?id={$row['id']}"><button class="btn btn-primary btn-circle" type="button"><i class="fa fa-list"></i></button></a>
-                                            <button idx="{$row['id']}" class="deldata btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i></button>
+                                            <button idx="{$row['id']}" isdel="{$row['isdel']}" class="deldata btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i></button>
                                         </td>
                                     </tr>
                                 {/volist}
@@ -67,14 +67,19 @@
         $(".deldata").click( function() {
             if (confirm("你确定删除吗?")) {  
                 id=$(this).attr('idx');
-                obj=$(this);
-                $.post("__URL__/del_user",{"id":id},function(data){
-                    if(data==1){
-                        $(obj).parent().parent().remove();
-                    }else{
-                        alert("删除失败");
-                    }
-                });
+                isdel=$(this).attr("isdel");
+                if(isdel!=1){
+                    obj=$(this);
+                    $.post("__URL__/del_user",{"id":id},function(data){
+                        if(data==1){
+                            $(obj).parent().parent().remove();
+                        }else{
+                            alert("删除失败");
+                        }
+                    });
+                }else{
+                    alert("系统管理员不能删除");
+                }
             }
         });
 </script>
