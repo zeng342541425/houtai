@@ -1,0 +1,68 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:66:"/www/m/weixin/public/../application/admin/view/index/index_v1.html";i:1514862503;}*/ ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--360浏览器优先以webkit内核解析-->
+
+
+    <title>H+ 后台主题UI框架 - 主页示例</title>
+
+    <link rel="shortcut icon" href="favicon.ico"> <link href="__STATIC__/admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__STATIC__/admin/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="__STATIC__/admin/css/animate.min.css" rel="stylesheet">
+    <link href="__STATIC__/admin/css/style.min.css" rel="stylesheet">
+    
+
+</head>
+
+<body class="gray-bg">
+    <div class="row  border-bottom white-bg dashboard-header">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1 class="panel-title">欢饮来到后台管理系统</h1>
+            </div>
+            <div class="panel-body">
+                
+                <table class="table table-bordered">
+                    <th>项目</th><th>参数 </th>
+                    <tr>
+                        <td class="text-primary">服务器域名/IP地址</td>
+                        <td><?php echo $_SERVER['SERVER_NAME'];?>(<?php if('/'==DIRECTORY_SEPARATOR){echo $_SERVER['SERVER_ADDR'];}else{echo @gethostbyname($_SERVER['SERVER_NAME']);} ?>)</td>
+                    </tr>
+                    <tr>
+                        <td class="text-primary">服务器操作系统:</td>
+                        <td><?php $os = explode(" ", php_uname()); echo $os[0];?> &nbsp;内核版本：<?php if('/'==DIRECTORY_SEPARATOR){echo $os[2];}else{echo $os[1];} ?></td>
+                    </tr>
+                    <tr>
+                        <td class="text-primary">服务器解译引擎:</td>
+                        <td><?php echo $_SERVER['SERVER_SOFTWARE'];?></td>
+                    </tr>
+                    <tr>
+                        <td class="text-primary">PHP版本（php_version）：</td>
+                        <td><?php echo PHP_VERSION;?></td>
+                    </tr>
+                    <tr>
+                        <td class="text-primary">绝对路径:</td>
+                        <td><?php echo $_SERVER['DOCUMENT_ROOT']?str_replace('\\','/',$_SERVER['DOCUMENT_ROOT']):str_replace('\\','/',dirname(__FILE__));?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    </script>
+    <script src="__STATIC__/admin/js/jquery.min.js"></script>
+    <script src="__STATIC__/admin/js/bootstrap.min.js"></script>
+    <script src="__STATIC__/admin/js/plugins/layer/layer.min.js"></script>
+    <script src="__STATIC__/admin/js/content.min.js"></script>
+    <script src="__STATIC__/admin/js/welcome.min.js"></script>
+</body>
+
+</html>
