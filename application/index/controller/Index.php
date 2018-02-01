@@ -41,8 +41,8 @@ class Index extends Wxlogin{
                 "button":[
                 {    
                     "type":"view",
-                    "name":"首页",
-                    "url":"http://bbs.qitmx.com/home.html"
+                    "name":"测试",
+                    "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1cbba0166977dca4&redirect_uri=http://www.hd512.com:8080/insurance/dot/getopenid.do&response_type=code&scope=snsapi_userinfo&state=0#wechat_redirect"
                 },
                 {
                     "type":"view",
